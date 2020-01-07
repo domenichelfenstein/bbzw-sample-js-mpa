@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add</title>
+    <link rel="stylesheet" href="./spectre/spectre.min.css">
+    <link rel="stylesheet" href="./spectre/spectre-icons.min.css">
+    <link rel="stylesheet" href="./assets/style.css">
+</head>
+
+<body>
+    <form action="#" method="POST">
+        <div class="form-group">
+            <label class="form-label" for="name">Name</label>
+            <input class="form-input" type="text" id="name" placeholder="Name of the hero" autofocus>
+        </div>
+        <div class="form-group">
+            <button type="submit" class="btn btn-primary input-group-btn">Submit</button>
+        </div>
+    </form>
+    <script>
+        const form = document.querySelector("form");
+        const nameInput = document.querySelector("#name");
+
+        form.onsubmit = ($event) => {
+            $event.preventDefault();
+            fetch(
+                "/api/heroes",
+                {
+                    body: JSON.stringify({ name: nameInput.value }),
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    method: "POST"
+                })
+                .then(() => window.location = "http://localhost:8080")
+        }
+    </script>
+</body>
+
+</html>
